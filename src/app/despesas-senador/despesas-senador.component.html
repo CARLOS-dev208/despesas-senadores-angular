@@ -5,18 +5,18 @@
     <mat-list-item *ngFor="let despesa of [1,2,3,4,5,6,7]">
         <div class="flex">
             <div> {{despesa | transformaTipo}}</div>
-            <div>{{ resumo(despesa).campos | number: '2.2-2': 'pt' }}</div>
+            <div>{{ calcularCampos(despesa)| number: '1.2-2': 'pt' }}</div>
         </div>
     </mat-list-item>
     <mat-list-item>
         <div class="flex">
             <div> Total: </div>
-            <div>{{ total | number: '5.2-2': 'pt' }}</div>
+            <div>{{ total | number: '1.2-2': 'pt' }}</div>
         </div>
     </mat-list-item>
 </mat-nav-list>
 
-<table mat-table [dataSource]="despesas" class="mat-elevation-z8">
+<table mat-table [dataSource]="despesas" class="mat-elevation-z8 corTabela">
     <ng-container matColumnDef="Tipo de despesa">
         <th mat-header-cell *matHeaderCellDef>Tipo de despesa</th>
         <td mat-cell *matCellDef="let el"> {{el.tipo | transformaTipo}} </td>
@@ -30,12 +30,12 @@
 
     <ng-container matColumnDef="Data">
         <th mat-header-cell *matHeaderCellDef> Data </th>
-        <td mat-cell *matCellDef="let element"> {{element.dia}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.dia }} </td>
     </ng-container>
 
     <ng-container matColumnDef="Valor">
         <th mat-header-cell *matHeaderCellDef> Valor </th>
-        <td mat-cell *matCellDef="let element"> {{ element.valor | number: '2.2-2': 'pt' }} </td>
+        <td mat-cell *matCellDef="let element"> {{ element.valor | number: '1.2-2': 'pt' }} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="['Tipo de despesa','Fornecedor','Data','Valor' ]"></tr>

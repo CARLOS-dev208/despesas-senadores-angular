@@ -41,11 +41,6 @@ export class DespesasSenadorComponent implements OnInit {
     });
   }
 
-  resumo(index: number) {
-    let campos = this.calcularCampos(index);
-    return { campos };
-  }
-
   calcularCampos(index: number) {
     return this.despesas
       ?.filter((despesa) => despesa.tipo == index)
