@@ -1,10 +1,44 @@
 <mat-toolbar color="primary">
     <span>Despesas Senadores (2019) - {{senador?.nomeSenador}}</span>
 </mat-toolbar>
-<!-- <mat-nav-list>
-    <mat-list-item *ngFor="let despesa of despesas">
-        {{despesa.fornec}}
+<mat-nav-list>
+    <mat-list-item *ngFor="let despesa of [1,2,3,4,5,6,7]">
+        <div class="flex">
+            <div> {{despesa | transformaTipo}}</div>
+            <div>{{ resumo(despesa).campos | number: '2.2-2': 'pt' }}</div>
+        </div>
     </mat-list-item>
-</mat-nav-list>> -->
+    <mat-list-item>
+        <div class="flex">
+            <div> Total: </div>
+            <div>{{ total | number: '5.2-2': 'pt' }}</div>
+        </div>
+    </mat-list-item>
+</mat-nav-list>
 
-{{total | number: '5.2-2': 'pt'}}
+<table mat-table [dataSource]="despesas" class="mat-elevation-z8">
+    <ng-container matColumnDef="Tipo de despesa">
+        <th mat-header-cell *matHeaderCellDef>Tipo de despesa</th>
+        <td mat-cell *matCellDef="let el"> {{el.tipo | transformaTipo}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Fornecedor">
+        <th mat-header-cell *matHeaderCellDef> Fornecedor </th>
+        <td mat-cell *matCellDef="let element"> {{ element.fornec}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Data">
+        <th mat-header-cell *matHeaderCellDef> Data </th>
+        <td mat-cell *matCellDef="let element"> {{element.dia}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Valor">
+        <th mat-header-cell *matHeaderCellDef> Valor </th>
+        <td mat-cell *matCellDef="let element"> {{ element.valor | number: '2.2-2': 'pt' }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['Tipo de despesa','Fornecedor','Data','Valor' ]"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['Tipo de despesa','Fornecedor','Data','Valor' ]"></tr>
+
+</table>

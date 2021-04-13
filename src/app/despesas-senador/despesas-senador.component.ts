@@ -36,15 +36,19 @@ export class DespesasSenadorComponent implements OnInit {
       this.service.getSenador(this.id).subscribe((senador) => {
         this.senador = senador;
         this.despesas = this.senador.despesas;
-        this.Dados();
+        this.total = this.despesas?.reduce((el1, el2) => el1 + el2.valor, 0);
       });
     });
   }
 
-  private Dados() {
-    this.total = this.despesas.reduce((el1, el2) => el1 + el2.valor, 0);
-    const resumo = this.despesas.map((despesa) => despesa.fornec);
+  resumo(index: number) {
+    let campos = this.calcularCampos(index);
+    return { campos };
+  }
 
-    console.log('ver', resumo);
+  calcularCampos(index: number) {
+    return this.despesas
+      ?.filter((despesa) => despesa.tipo == index)
+      .reduce((el1, el2) => el1 + el2.valor, 0);
   }
 }

@@ -10,9 +10,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
 import { registerLocaleData } from '@angular/common';
 
 import localePt from '@angular/common/locales/pt';
+import { TransformaTipoPipe } from './transforma-tipo.pipe';
 registerLocaleData(localePt);
 
 @NgModule({
@@ -20,6 +22,7 @@ registerLocaleData(localePt);
     AppComponent,
     ListaDeSenadoresComponent,
     DespesasSenadorComponent,
+    TransformaTipoPipe,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +32,7 @@ registerLocaleData(localePt);
     HttpClientModule,
     MatListModule,
     MatIconModule,
+    MatTableModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pt' }],
   bootstrap: [AppComponent],
